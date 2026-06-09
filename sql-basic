@@ -1,0 +1,81 @@
+-- SELECT CLAUSE------------------------------------
+
+select * from dim_customer;
+
+-- select particular rows 
+select customer_id , email from dim_customer;
+
+-- using indentation 
+select 
+   customer_key , 
+   customer_id
+from
+   dim_customer;
+   
+-- top 100 records limit 
+select 
+   customer_key, 
+   customer_id
+from
+   dim_customer
+limit 20;
+
+-- WHERE CLAUSE ----------------------------------------------------------------
+select 
+  *
+from 
+  dim_customer
+where 
+   gender = "F";
+   
+select * from dim_customer
+where (gender= "F") and (country= "France") and (join_date > "2022-01-01");
+
+select * from dim_customer
+where (gender= "F") and ((country= "France") or (join_date > "2022-01-01"));
+
+
+-- LIKE operator --------------------------------------------------------
+
+select * from dim_customer
+where first_name like "T%y";
+
+-- a quesry in which frst name strats from t and have 3rd letter as f and last letter as y 
+
+select * from dim_customer
+where first_name like "T__f%y";
+
+-- sorting-----------------------------------------------------------
+select * from dim_product
+order by unit_price Desc;
+
+select * from dim_product
+order by unit_price asc;
+
+select * from dim_product
+order by unit_price desc
+limit 5;
+
+-- Alias-----------------------------------------------------------------------
+select 
+product_id,
+product_name as prodname
+from 
+dim_product;
+
+-- Grouping --------------------------------------------------
+select category ,
+ avg(unit_price) as average_price ,
+ sum(unit_price) as total_price
+from dim_product
+group by category;
+
+
+-- Having----------------------------------------------------
+
+select category ,
+ avg(unit_price) as average_price,
+ sum(unit_price) as total_price
+from dim_product
+group by category
+having average_price > 500
