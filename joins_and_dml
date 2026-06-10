@@ -1,0 +1,104 @@
+-- JOINS-----------------------------------------------------------------
+drop table if exists orders;
+drop table if exists customers;
+create table  orders
+(
+o_id int,
+cust_id int,
+price int 
+);
+
+insert into orders values
+(1,101,1000),
+(2,201,1100),
+(3,501,1200);
+
+create table customers
+(
+id int,
+cust_name varchar(200),
+email varchar(200) 
+);
+
+insert into customers values
+(101,"san", "aa"),
+(201,"far","bb"),
+(301,"lov","cc");
+
+-- INNER JOIN_____________________________
+
+select
+   * 
+ from 
+   orders o 
+Inner join 
+    customers c 
+on 
+o.cust_id = c.id;
+
+-- to display only one column
+
+select 
+   o.*, c.cust_name
+from 
+  orders o 
+inner join 
+  customers c 
+on 
+  o.cust_id = c.id;
+
+
+
+-- LEFT JOIN( frst mentioned table will be left and table after left join wil be right)------------------------------------------------------------
+
+select
+   * 
+ from 
+   orders o  -- left table
+left join
+    customers c  -- right table
+on 
+o.cust_id = c.id;
+
+-- RIGHT JOIN --------------------------------------------------------------------
+select
+   * 
+ from 
+   orders o  -- left table
+right join 
+    customers c  -- right table
+on 
+o.cust_id = c.id;
+
+
+-- UNION----------------------------------------------------
+select
+   * 
+ from 
+   orders o  -- left table
+left join
+    customers c  -- right table
+on 
+o.cust_id = c.id
+
+union 
+
+select
+   * 
+ from 
+   orders o  -- left table
+right join 
+    customers c  -- right table
+on 
+o.cust_id = c.id;
+
+-- UPDATE COMMAND----------------------------------------
+
+update customers
+set cust_name = "sam"
+where id = 101;
+
+-- DELETE COMMAND----------------------------------------
+delete from customers
+where email = "aa";
+
