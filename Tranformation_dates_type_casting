@@ -1,0 +1,54 @@
+-- TRANSFORMATIONS---------------------------------------------------------
+
+use ecom ;
+select * from dim_product;
+
+-- NUMERIC TRANSFORMATIONS --------------
+select
+ unit_price * 0.90 as discount_price,
+ unit_price + 10 as tax_price,
+ unit_price / 10 as fraction_price,
+ round(unit_price, 1) as rounded_price
+from
+ dim_product;
+
+-- DATE TRANFORMATIONS---------------------------
+
+select 
+ date, now() as 'current_time',
+ utc_date(),
+ utc_time(),
+ utc_timestamp()
+ from 
+   dim_date;
+
+
+-- 2)
+select 
+ date,
+ year(date),
+ month(date),
+ day(date),
+ weekday(date),
+ dayname(date),
+ date(utc_timestamp()),
+ adddate(date, 2),  -- add two date,
+ subdate(date, 2), -- substract two dates 
+ datediff(date(utc_timestamp()),date) as date_diiference,
+ cast('2025-01-01' as datetime)
+from 
+ dim_date;
+ 
+ select 
+   date, 
+   date_format(date, "%W %M, %e, %y") as coverted_date
+from 
+  dim_date;
+ 
+ -- TYPE CASTING ---------------------------------------------------
+ 
+ select 
+ customer_key,
+ cast(customer_key as char(200))
+ from 
+  dim_customer;
