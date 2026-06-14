@@ -1,0 +1,60 @@
+-- STRING FUNCTIONS ------------------------------------------------
+use ecom ;
+select * from dim_customer;
+
+-- CONCATE FUNCTIONS----
+
+select 
+  concat(first_name, ' ',  last_name) as full_name ,-- using seperators
+  concat_ws(' ', first_name, last_name, country) -- using more than one column with space 
+from 
+  dim_customer;
+  
+  
+
+-- LENGTH ,SIZE OF THE COLUMN ------------------
+select 
+  country , length(country) as country_size
+from
+  dim_customer;
+
+-- LOWER AND UPPER CASE ----------------
+
+select 
+  upper(city) ,
+  lower(country)
+from 
+   dim_customer;
+   
+-- SLICING IN DATA----------------------
+select 
+  substring(email, 1,6)
+from
+  dim_customer;
+
+-- REPLACE --------------------
+select 
+  replace(email , "@", "%")
+from
+  dim_customer;
+  
+-- SLICING FROM DIRECTION ---------------
+select 
+  left(country, 3), -- gives three letters from left 
+  right(country, 3) -- gives three letters from right 
+from
+  dim_customer;
+
+-- REVERSE ----------------
+
+select 
+ reverse(country)  -- reverse the letters
+from 
+  dim_customer;
+
+-- REPEAT --------------------
+select 
+ repeat(first_name, 3)
+from 
+  dim_customer;
+  
